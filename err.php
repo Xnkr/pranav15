@@ -100,6 +100,7 @@
 								session_start();
 								$error = $_SESSION['error'];
 								echo $error;
+								// Branch1
 								?>
 								</h3></p>
 									</header>
