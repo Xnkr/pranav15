@@ -100,6 +100,7 @@
 								session_start();
 								$error = $_SESSION['error'];
 								echo $error;
+								// Added master
 								?>
 								</h3></p>
 									</header>
