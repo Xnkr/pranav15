@@ -100,7 +100,6 @@
 								session_start();
 								$error = $_SESSION['error'];
 								echo $error;
-								// Hello world!
 								?>
 								</h3></p>
 									</header>
