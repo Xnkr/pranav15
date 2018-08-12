@@ -1,0 +1,1517 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>Pranav2K15</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link href="assets/css/main.css" rel="stylesheet" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script>
+        function initialize() {
+            var myLatlng = new google.maps.LatLng(13.0561096, 80.2270774);
+            var mapOptions = {
+                zoom: 16,
+                center: myLatlng
+            }
+            var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: 'Meenakshi Sundararajan Engineering College!'
+            });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</head>
+
+<body class="homepage">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <div id="header">
+            <div class="inner">
+                <header>
+                    <h1><a href="index.html" id="logo">Pranav 2K15</a></h1>
+
+                    <hr />
+                    <p>Get Digitized!</p>
+
+                    <p>A National Level Technical Symposium</p>
+                </header>
+
+                <footer><a class="button circled scrolly" href="#banner">Start</a></footer>
+            </div>
+            <!-- Nav -->
+
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a class="scrolly" href="#banner">About</a></li>
+                    <li><a class="scrolly" href="#features">Events</a>
+                        <ul>
+                            <li><a href="#">Oratorical Events</a>
+                                <ul>
+                                    <li><a class="scrolly" href="#e1">Paper Presentation</a></li>
+                                    <li><a class="scrolly" href="#e2">Project Presentation</a></li>
+                                    <li><a class="scrolly" href="#e7">Tech-Bate</a></li>
+                                    <li><a class="scrolly" href="#e13">Survival of the fittest</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Robotics</a>
+                                <ul>
+                                    <li><a class="scrolly" href="#e5">Line Follower</a></li>
+                                    <li><a class="scrolly" href="#e6">RC RACING</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Puzzles &amp; Analytics</a>
+                                <ul>
+                                    <li><a class="scrolly" href="#e3">Circuit Debugging</a></li>
+                                    <li><a class="scrolly" href="#e4">Code Debugging</a></li>
+                                    <li><a class="scrolly" href="#e8">Tech-Hunt</a></li>
+                                    <li><a class="scrolly" href="#e14">Open Circuit</a></li>
+                                    <li><a class="scrolly" href="#e10">Technical Connexions</a></li>
+                                    <li><a class="scrolly" href="#e11">Green Screen</a></li>
+                                    <li><a class="scrolly" href="#e15">Clue it!</a></li>
+                                    <li><a class="scrolly" href="#e16">Google it!</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Miscellaneous</a>
+                                <ul>
+                                    <li><a class="scrolly" href="#e9">Minute-to-Win-it</a></li>
+                                    <li><a class="scrolly" href="#e12">Tech-zap</a></li>
+                                    <li><a class="scrolly" href="#e17">Gaming</a></li>
+                                    <li><a class="scrolly" href="#e18">Short Film making</a></li>
+                                    <li><a class="scrolly" href="#e19">Online Photography</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="scrolly" href="#e20">???????????????</a></li>
+                        </ul>
+                        <a class="scrolly" href="#e20"> </a>
+                    </li>
+<li><a href="pips.html">PIPS</a></li>
+                    <li><a class="scrolly" href="#signupn">Sign Up</a></li>
+                    <li><a href="#contact" class="scrolly">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Banner -->
+
+        <section id="banner">
+            <header>
+                <h2>About Us</h2>
+
+                <p>Welcome to PRANAV 2K15!! It&rsquo;s a national level technical symposium conducted by <b>ELECTRONICS AND COMMUNICATION ENGINEERING DEPARTMENT OF MEENAKSHI SUNDARARAJAN ENGINEERING COLLEGE</b>. We proudly present our theme for this year <b>&ldquo;DIGITAL INDIA&rdquo;</b> on <b>19-08-2015</b>. This year, we would like to highlight two social issues through <b>PRANAV 2K15</b>, one being <b>&ldquo;ZERO RUPEE NOTE&rdquo;</b> and other <b>&ldquo;DIGITAL LITERACY&rdquo;</b> sine-qua-nom of our theme.</p>
+<p><a class="button scrolly" href="#features">Events</a></p>
+            </header>
+        </section>
+        <canvas id="c"></canvas>
+        <script type="text/javascript">
+            var c = document.getElementById("c");
+            var ctx = c.getContext("2d");
+
+            //making the canvas full screen
+            c.height = window.innerHeight;
+            c.width = window.innerWidth;
+
+            //chinese characters - taken from the unicode charset
+            var chinese = "01";
+            //converting the string into an array of single characters
+            chinese = chinese.split("");
+
+            var font_size = 10;
+            var columns = c.width / font_size; //number of columns for the rain
+            //an array of drops - one per column
+            var drops = [];
+            //x below is the x coordinate
+            //1 = y co-ordinate of the drop(same for every drop initially)
+            for (var x = 0; x < columns; x++)
+                drops[x] = 1;
+
+            //drawing the characters
+            function draw() {
+                //Black BG for the canvas
+                //translucent BG to show trail
+                ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+                ctx.fillRect(0, 0, c.width, c.height);
+
+                ctx.fillStyle = "#000"; //green text
+                ctx.font = font_size + "px arial";
+
+                //looping over drops
+                for (var i = 0; i < drops.length; i++) {
+                    //a random chinese character to print
+                    var text = chinese[Math.floor(Math.random() * chinese.length)];
+                    //x = i*font_size, y = value of drops[i]*font_size
+                    ctx.fillText(text, i * font_size, drops[i] * font_size);
+                    //sending the drop back to the top randomly after it has crossed the screen
+                    //adding a randomness to the reset to make the drops scattered on the Y axis
+                    if (drops[i] * font_size > c.height && Math.random() > 0.975)
+                        drops[i] = 0;
+                    //incrementing Y coordinate
+                    drops[i]++;
+                }
+            }
+
+            setInterval(draw, 33);
+        </script>
+        <!-- Features -->
+
+        <div class="wrapper style1">
+            <section class="container special" id="features">
+                <header>
+                    <h2>Events</h2>
+                </header>
+
+                <div class="row">
+                    <article class="3u 12u(mobile) special" id="pips">
+                        <a class="image featured" href="pips.html"><img alt="" src="images/pips.jpg" /></a>
+
+                        <header>
+                            <h3><a href="pips.html">PRANAV INDIAN PARLIAMENT SIMULATION (PIPS)</a></h3>
+                        </header>
+
+                        <p>Are you someone who is interested in debating? Are you someone who takes an interest in the affairs of the country? Are you a frequent youth parliament participant? Then you&#39;re here in the right place at the right time, it&#39;s that time of the year again when students from various streams suit up to become the leaders of India and bring forth their viewpoints on various issues <strong>PRANAV 2K15</strong> brings to you <strong>PIPS- PRANAV INDIAN PARLIAMENT SIMULATION</strong></p>
+                    </article>
+
+                    <article class="3u 12u(mobile) special" id="e1">
+                        <a class="image featured" data-target="#event1" data-toggle="modal"><img alt="" src="images/prp.jpg" /></a>
+
+                        <header>
+                            <h3><a data-target="#event1" data-toggle="modal">Paper Presentation</a></h3>
+                        </header>
+
+                        <p>Are you a person filled with technical knowledge and presentation skills that leaves the listener astound but still are in search of a platform to exhibit the same. Here&rsquo;s your chance to flaunt your skills. PRANAV 2K15 provides you with PAPER PRESENTAION, a technical event for the technically sound orators.</p>
+                    </article>
+
+                    <article class="3u 12u(mobile) special" id="e2">
+                        <a class="image featured" data-target="#event2" data-toggle="modal"><img alt="" src="images/prjpr.jpg" /></a>
+
+                        <header>
+                            <h3><a data-target="#event2" data-toggle="modal">Project Presentation</a></h3>
+                        </header>
+
+                        <p>We present to you the king of technical events, send us your projects along with your idea for a working model, and we&rsquo;ll give you the platform to become the next Steve Jobs or Larry Page.</p>
+                    </article>
+
+                    <article class="3u 12u(mobile) special" id="e3">
+                        <a class="image featured" data-target="#event3" data-toggle="modal"><img alt="" src="images/cktd.jpg" /></a>
+
+                        <header>
+                            <h3><a data-target="#event3" data-toggle="modal">Circuit Debugging</a></h3>
+                        </header>
+
+                        <p>Are you one of those who can solve the circuits and get the outputs in a jiffy? Can you solve monotonous circuits and get the LEDS to flash? Then you are the right place. Come debug the circuits and win exciting prizes.</p>
+                    </article>
+                </div>
+
+                <div class="row">
+                    <article class="3u 12u(mobile) special" id="e4">
+                        <a class="image featured" data-target="#event4" data-toggle="modal"><img alt="" src="images/cded.jpg" /></a>
+
+                        <header>
+                            <h3><a data-target="#event4" data-toggle="modal">Code Debugging</a></h3>
+                        </header>
+
+                        <p>Wanna find out how sound you are at coding ? Here at PRANAV 2K15 we give you code debugging.Solve our codes and get the output to win exciting prizes.</p>
+                    </article>
+
+                    <article class="3u 12u(mobile) special" id="e5">
+                        <a class="image featured" data-target="#event5" data-toggle="modal"><img alt="" src="images/lnfwr.jpg" /></a>
+
+                        <header>
+                            <h3><a data-target="#event5" data-toggle="modal">Line Follower</a></h3>
+                        </header>
+
+                        <p>Ever dreamed of building a robot like Chappie?If you have then your journey begins here . A simple maze which is common to all the participants and the sole objective is to complete the maze by following the black line given.</p>
+                    </article>
+
+                    <article class="3u 12u(mobile) special" id="e6">
+                        <a class="image featured" data-target="#event6" data-toggle="modal"><img alt="" src="images/btr.jpg" /></a>
+
+                        <header>
+                            <h3><a data-target="#event6" data-toggle="modal">RC Racing</a></h3>
+                        </header>
+
+                        <p>Does the sound of the wheels turning and the cars swishing excite you? We at PRANAV 2K15 present to you RC RACING!!Come and enjoy the salvation of playing a video game live!!Beat your participants in the race to reach the destination across the hurdles and win exciting prizes!!</p>
+                    </article>
+
+                    <article class="3u 12u(mobile) special" id="e7">
+                        <a class="image featured" data-target="#event7" data-toggle="modal"><img alt="" src="images/td.jpg" /></a>
+
+                        <header>
+                            <h3><a data-target="#event7" data-toggle="modal">Tech-Bate</a></h3>
+                        </header>
+
+                        <p>Does your oratorical skill leave everyone astonished? Do you have the burning desire to make your point in the public forum? Techbate offers you the perfect chance to do the same, put your points across and contradict the opposition for your team on an interesting technical topic.</p>
+                    </article>
+                </div>
+
+                <div class="row">
+                    <article class="3u 12u(mobile) special" id="e8">
+                        <a class="image featured" data-target="#event8" data-toggle="modal"><img alt="" src="images/thunt.jpg" /></a>
+
+                        <header>
+                            <h3><a data-target="#event8" data-toggle="modal">Tech-Hunt</a></h3>
+                        </header>
+
+                        <p>Are you a techie and are you a person who loves solving puzzles ? Do you think you have it in you to become the Sherlock Holmes in the techie side ? Here&#39;s your chance to prove yourself.Pranav 2K15 brings to you the ultimate adventure ,TECH-HUNT come and crack the puzzles given by us and win prizes.</p>
+                    </article>
+
+                    <article class="3u 12u(mobile) special" id="e9">
+                        <a class="image featured" data-target="#event9" data-toggle="modal"><img alt="" src="images/minw.jpg" /></a>
+
+                        <header>
+                            <h3><a data-target="#event9" data-toggle="modal">Minute-to-Win-it!</a></h3>
+                        </header>
+
+                        <p>Ever tried solving a problem or completing a task within a minute ? Want to check how well you perform under pressure? We bring to you MINUTE-TO-WIN-IT in the technical side!! Come and test your own time management skills and your quotient in engineering on the basic level.</p>
+                    </article>
+
+                    <article class="3u 12u(mobile) special" id="e10">
+                        <a class="image featured" data-target="#event10" data-toggle="modal"><img alt="" src="images/connx.jpg" /></a>
+
+                        <header>
+                            <h3><a data-target="#event10" data-toggle="modal">Technical Connexions</a></h3>
+                        </header>
+
+                        <p>Are you a person who loves puzzles? Someone who tries figuring out random stuff from abstract things? Do you love to solve mysteries? Could you call yourself a detector? Or a connector? This is the event just for you!!This is would be your Disneyland come and hone your connecting skills at PRANAVS Technical connexions</p>
+                    </article>
+
+                    <article class="3u 12u(mobile) special" id="e11">
+                        <a class="image featured" data-target="#event11" data-toggle="modal"><img alt="" src="images/gs.jpg" /></a>
+
+                        <header>
+                            <h3><a data-target="#event11" data-toggle="modal">Green Screen</a></h3>
+                        </header>
+
+                        <p>Sharpen your minds lend us your ears!!!Do you think have a good grasping capability? Can you read between the lines and understand the implications? PRANAV 2K15 is here for you to test this skill of yours. We present to you GREEN SCREEN!!</p>
+                    </article>
+                </div>
+
+                <div class="row">
+                    <article class="3u 12u(mobile) special" id="e12">
+                        <a class="image featured" data-target="#event12" data-toggle="modal"><img alt="" src="images/tzap.jpg" /></a>
+
+                        <header>
+                            <h3><a data-target="#event12" data-toggle="modal">Tech-Zap</a></h3>
+                        </header>
+
+                        <p>Do you have the gift of gab? Can you go the extra mile to convince someone? Are you a person who sees an opportunity when most see impossibility? If yes come and zap it here.</p>
+                    </article>
+
+                    <article class="3u 12u(mobile) special" id="e13">
+                        <a class="image featured" data-target="#event13" data-toggle="modal"><img alt="" src="images/sfit.jpg" /></a>
+
+                        <header>
+                            <h3><a data-target="#event13" data-toggle="modal">Survival of the fittest</a></h3>
+                        </header>
+
+                        <p>Imagine being stranded on a sinking ship. Do you have what it takes to convince your captain, to get the life jacket?!?! If yes then, aboard our ship and grab your life jacket.</p>
+                    </article>
+
+                    <article class="3u 12u(mobile) special" id="e14">
+                        <a class="image featured" data-target="#event14" data-toggle="modal"><img alt="" src="images/esc.jpg" /></a>
+
+                        <header>
+                            <h3><a data-target="#event14" data-toggle="modal">Open Circuit</a></h3>
+                        </header>
+
+                        <p>How well would you react to a problem?? Would you keep calm?? Would you panic?? Come here and test your skills. Let the adrenaline rush through your intestines when you try to solve our clues to unlock your doors to the winners place.</p>
+                    </article>
+
+                    <article class="3u 12u(mobile) special" id="e15">
+                        <a class="image featured" data-target="#event15" data-toggle="modal"><img alt="" src="images/clue.jpg" /></a>
+
+                        <header>
+                            <h3><a data-target="#event15" data-toggle="modal">Clue it!</a></h3>
+                        </header>
+
+                        <p>26 alphabets in a line, do you have the eight words popping in your mind???Come and test your understanding quotient. See if you can guess the technical words and phrases that we give you here in CLUE IT at PRANAV 2K15.</p>
+                    </article>
+                </div>
+
+                <div class="row">
+                    <article class="3u 12u(mobile) special" id="e16">
+                        <a class="image featured" data-target="#event16" data-toggle="modal"><img alt="" src="images/ggl.jpg" /></a>
+
+                        <header>
+                            <h3><a data-target="#event16" data-toggle="modal">Google it!</a></h3>
+                        </header>
+
+                        <p>Are you an ardent googler? How fast can you google? Ever tried searching for an image to decipher the meaning? Come here and hone your googling skills and win prizes for being a fast googler. We present to you GOOGLE IT, the googling contest of PRANAV 2k15</p>
+                    </article>
+
+                    <article class="3u 12u(mobile) special" id="e17">
+                        <a class="image featured" data-target="#event17" data-toggle="modal"><img alt="" src="images/game.jpg" /></a>
+
+                        <header>
+                            <h3><a data-target="#event17" data-toggle="modal">Gaming</a></h3>
+                        </header>
+
+                        <p>Are you an avid gamer ? Do you spend days and nights playing tirelessly ? does the talk of COD and FIFA make your heart pound ? then you&rsquo;re definitely in the right place !Welcome to THE PRANAV GAMING ARENA , where real gamers fight it out !!!!</p>
+                    </article>
+
+                    <article class="3u 12u(mobile) special" id="e18">
+                        <a class="image featured" data-target="#event18" data-toggle="modal"><img alt="" src="images/sfm.jpg" /></a>
+
+                        <header>
+                            <h3><a data-target="#event18" data-toggle="modal">Short Film making</a></h3>
+                        </header>
+
+                        <p>Do you think you&rsquo;ve got what it takes to direct a film ? Do you want to make it to the big league ? well, here&#39;s your chance- PRANAV FILMATHON ! SEND US YOUR SHORTFILMS AND GET A CHANCE TO MAKE YOUR MARK</p>
+                    </article>
+
+                    <article class="3u 12u(mobile) special" id="e19">
+                        <a class="image featured" data-target="#event19" data-toggle="modal"><img alt="" src="images/phto.jpg" /></a>
+
+                        <header>
+                            <h3><a data-target="#event19" data-toggle="modal">Online Photography</a></h3>
+                        </header>
+
+                        <p>Are you an ardent photographer? Do you end up packing up the camera and the lens before anything else? Are you a person who finds an insect to an elephant to everything perfect only when seen through the lens? Then come and participate in the PRANAV&rsquo;s photography event organised just for the dslrs and their proud beholders.</p>
+                    </article>
+                </div>
+
+                <div class="row">
+                    <article class="4u 12u(mobile) special" id="null"></article>
+
+                    <article class="4u 12u(mobile) special" id="e20">
+                        <a class="image featured" data-target="#event20" data-toggle="modal"><img alt="" src="images/myst.jpg" /></a>
+
+                        <header>
+                            <h3><a data-target="#event20" data-toggle="modal">???????????</a></h3>
+                        </header>
+
+
+
+                        <center><b>Stay tuned to know more about our Mystery event.</b></center>
+
+
+                    </article>
+
+                    <article class="4u 12u(mobile) special" id="nulla"></article>
+                </div>
+            </section>
+        </div>
+        <!-- Modals -->
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="event1" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title" id="myModalLabel">PAPER PRESENTATION</h3>
+                    </div>
+
+                    <div class="modal-body">
+
+
+                        <center><strong><i>&ldquo;Learning gives creativity. Creativity leads to thinking .Thinking provides knowledge. Knowledge makes you great.&rdquo; -A.P.J Abdul Kalam </i></strong></center>
+
+
+
+                        <p>The paper presentation is an out and out technical event. In this event the participants, who are selected, are to give a presentation on a technical topic of their choice from the list of topics given below. The participants would be judged based on their technical knowledge and presentation capabilities. Selection would be solely based on the abstract that would be mailed to us prior to the deadline.</p>
+
+
+
+                        <h3>TOPICS:</h3>
+
+                        <ul>
+                            <li>1.VLSI/EMBEDDED SYSTEMS</li>
+                            <li>2.NETWORKING</li>
+                            <li>3.ROBOTICS/ARTIFICIAL INTELLIGENCE</li>
+                            <li>4.NANO-TECHNOLOGY</li>
+                            <li>5.WIRELESS/OPTICAL COMMUNICATION</li>
+                            <li>6.CYBER TERRORISM</li>
+                            <li>7.NEMS</li>
+                            <li>8.GRID COMPUTING</li>
+                            <li>9.VIRTUALISATION</li>
+                            <li>10.BIO-ELECTRONICS TECHNOLOGY</li>
+<li>11.IoT</li>
+                        </ul>
+
+
+
+
+
+                        <h3>RULES:</h3>
+
+
+                        <li>Each team can consist of only a maximum of three participants.</li>
+                        <li>Spot registrations are not applicable for this event.</li>
+                        <li>The topic presented must be on a technical subject from the given list.</li>
+                        <li>The paper should be in <b>IEEE format.</b></li>
+                        <li>Do not password protect or add bookmarks to your PDF or word file</li>
+                        <li>The paper to be presented must be brought in a <b>CD and pen-drive.</b></li>
+                        <li>Abstracts of the paper should be mailed as a PDF or word document to <a href="mailto:paper@pranav2k15.com">paper@pranav2k15.com</a>.</li>
+                        <li>The abstract must be mailed to us on or before <b>14-08-2015</b>.</li>
+                        <li>The finalized list of paper would be confirmed on <b>16-08-2015.</b></li>
+                        <li>The judge&rsquo;s decision is to be considered final and no discrepancy shall be entertained.</li>
+                        <li>Participants must report on or before <b>9.00 am.</b></li>
+                        <li>The participants should bring their <b>college ID cards</b> for identification purpose.</li>
+                     
+                        <li>The participants must adhere to the rules and regulations formed by the symposium committee members and volunteers.</li>
+                        <li>Lunch will not be provided.</li>
+
+
+
+
+                        <p><b>The following details should be sent along with the paper:</b></p>
+
+                        <p>
+                            <li>Name of the participant</li>
+                            <li>College</li>
+                            <li>Department and year of study</li>
+                            <li>Contact details- mobile number</li>
+                            <li>Email id</li>
+                        </p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="event2" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title" id="myModalLabel">PROJECT PRESENTATION</h3>
+                    </div>
+
+                    <div class="modal-body">
+
+
+                        <center><strong><i>&ldquo;Design is not just what it looks like and feels like. Design is how it works&rdquo; -Steve Jobs</i></strong></center>
+
+
+
+                        <p>The project presentation event is to highlight your practical knowledge on various subjects and bring out the best in someone by means of a healthy competition. The project abstract is to be emailed prior to deadline and only the selected projects (to be notified through email) will be required to present their project as a PowerPoint presentation. A practical demo is mandatory through means of a working model.</p>
+
+
+
+                        <h3>TOPICS:</h3>
+
+                        <ul>
+                            <li>1. OPTICAL COMMUNICATION</li>
+                            <li>2. ROBOTICS</li>
+                            <li>3. MEDICAL ELECTRONICS</li>
+                            <li>4. VLSI</li>
+                            <li>5. RF AND MICROWAVE</li>
+                            <li>6. EMBEDDED SYSTEM AND IMAGE PROCESSING</li>
+                            <li>7. WIRELESS COMMUNICATION</li>
+                            <li>OTHER INNOVATIVE TOPICS ARE WELCOME</li>
+                        </ul>
+
+
+
+
+
+                        <h3>RULES:</h3>
+
+
+                        <li>You are required to mail a PDF or word document of your abstract.</li>
+                        <li>Do not password protect or add bookmarks to your PDF or word file.</li>
+                        <li>Participants are requested to bring their presentation in their <b>own personal laptops</b> on the day of symposium.</li>
+                        <li>The contestants are requested to mail us the abstract of your project to <a href="mailto:project@pranav2k15.com">project@pranav2k15.com</a> on or before <b>14-08-2015.</b></li>
+                        <li>Subject of the mail should be &quot;PROJECT PRESENTATION&quot;.</li>
+                        <li>Short listed projects will be intimated through mail by <b>17-08-2015.</b></li>
+                        <li>Power supply of 230 V will be provided.</li>
+                        <li>Participants must bring all the requirements related to their project.</li>
+                        <li>Each team can consist of only a maximum of three participants.</li>
+                        <li>A team can submit only one project. Submission of more than one project may be disqualified.</li>
+                        <li>The participants should bring their <b>college ID cards</b> for identification purpose.</li>
+                        <li>Participants must report on or before <b>9.00 am.</b></li>
+                        <li>The topic presented must be on a technical subject.</li>
+                        <li>The judge&rsquo;s decision is to be considered final and no discrepancy shall be entertained. The wearing of identity card of respective college is compulsory during the event</li>
+                        <li>Organizers reserve the right to disqualify any project that does not fit an appropriate category.</li>
+                        <li>The participants must not exceed the given time limit.</li>
+                        <li>The participants must adhere to the rules and regulations formed by the symposium committee members and volunteers.</li>
+                        <li>Lunch will not be provided.</li>
+
+
+                        <p><b>The following details should be sent along with the abstract:</b>
+
+                            <ul>
+                                <li>1.Name of the participant</li>
+                                <li>2.College</li>
+                                <li>3.Department and year of study</li>
+                                <li>4.Contact details mobile number</li>
+                                <li>5.Email id</li>
+                            </ul>
+                        </p>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="event3" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title" id="myModalLabel">CIRCUIT DEBUGGING</h3>
+                    </div>
+
+                    <div class="modal-body">
+
+
+                        <center><strong><i>&ldquo;Ability to solve a problem is a true measure of one&#39;s skill.&rdquo;</i></strong></center>
+
+
+
+                        <p>Circuit debugging is a pure technical event.The participant is given a circuit with a few erroneous connections. The participant to debug the circuit the fastest and get an output, would be the winner. The participants would be judged based on their debugging skills, technical knowledge and time management.</p>
+
+                        <p><b>Round 1: </b>Multiple Choice Questions [20 minutes]</p>
+
+                        <p><b>Round 2: </b> Circuit connections [20 minutes]</p>
+
+                        <p><b>Round 3: </b>[45 minutes]</p>
+
+                        <ul>
+                            <li>Stage 1: Circuit connection</li>
+                            <li>Stage 2: Soldering and de-soldering</li>
+                        </ul>
+
+                        <h3>RULES:</h3>
+
+
+                        <li>Each team can consist of only a maximum of two participants.</li>
+                        <li>The participants should bring their <b>college ID cards</b> for identification purpose.</li>
+                        <li>Participants must report on or before <b>9.00 am</b>.</li>
+                        <li>The judge&rsquo;s decision is to be considered final and no discrepancy shall be entertained.</li>
+                        <li>The participants must not exceed the given time limit.</li>
+                        <li>The participants must adhere to the rules and regulations formed by the symposium committee members and volunteers.</li>
+                        <li>Lunch will not be provided.</li>
+                        <li>Use of Mobile phones and calculators are prohibited.</li>
+
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="event4" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title" id="myModalLabel">CODE DEBUGGING</h3>
+                    </div>
+
+                    <div class="modal-body">
+
+
+                        <center><strong><i>&ldquo;When debugging novices insert corrective codes, experts remove defective code&rdquo; -Richard E Pattis </i></strong></center>
+
+
+
+                        <p>Code debugging is an event, that is out to test your coding and debugging skills. A participant would be given a code with few errors.The participant to debug the code and get the output, would be the winner. Participants would be judged based on their depth of knowledge, coding skills and time management.</p>
+
+
+
+
+                        <li><b>Level 1:</b>
+
+                            <p>MCQ(technical) [10 minutes]</p>
+                        </li>
+                        <li><b>Level 2:</b>
+                            <p>The code snippets on embedded C or assembly level languages are to be debugged. [15 minutes]</p>
+                        </li>
+                        <li><b>Level 3:</b>
+                            <p>The logical and syntax error has to be found and debugged for the given code snippet and executed in the microprocessor and microcontroller kit. [20 minutes]</p>
+                        </li>
+                        <li>Must have a fair knowledge on:</li>
+
+
+                        <ul>
+                            <li>1.Embedded C</li>
+                            <li>2.Assembly level language</li>
+                        </ul>
+
+
+
+
+
+                        <h3>RULES:</h3>
+
+
+                        <li>Each team can have a maximum of two participants.</li>
+                        <li>The judge&rsquo;s decision is to be considered final and no discrepancy shall be entertained.</li>
+                        <li>The participants should bring their <b>college ID cards</b> for identification purpose.</li>
+                        <li>Participants must report on or before <b>9.00 am</b>.</li>
+                        <li>The participants must not exceed the given time limit.</li>
+                        <li>The participants must adhere to the rules and regulations formed by the symposium committee members and volunteers.</li>
+                        <li>Lunch will not be provided.</li>
+                        <li>Mobile phones are not allowed.</li>
+
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="event5" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title" id="myModalLabel">LINE FOLLOWER</h3>
+                    </div>
+
+                    <div class="modal-body">
+                        <p>LINE FOLLOWER is one of the very simplest robotic event. Here a robot built by the participating team must sense the black line marked on the track and must reach the destination surpassing the hurdles and obstacles on the way. The robot must be preprogramed and must run independently.</p>
+
+
+
+                        <h3>GENERAL RULES:</h3>
+
+
+                        <li>Each team can consist of only a maximum of three participants.</li>
+                        <li>The participants should bring their <b>college ID cards</b> for identification purpose.</li>
+                        <li>Participants must report on or before <b>9.00 am</b>.</li>
+                        <li>The robot must be built by the participants themselves, if not the team stands disqualified.</li>
+                        <li>Only one team member will be allowed in the track.</li>
+                        <li>The judge&rsquo;s decision is to be considered final and no discrepancy shall be entertained.</li>
+                        <li>The participants must not exceed the given time limit.</li>
+                        <li>The participants must adhere to the rules and regulations formed by the symposium committee members and volunteers.</li>
+                        <li>Lunch will not be provided.</li>
+
+
+
+
+
+                        <h3>EVENT RULES:</h3>
+
+
+                        <li>The time measured by the coordinators will be final and will be used to judge the teams.</li>
+                        <li>The event coordinators receive the right to make modifications to any of the rules if deemed necessary and their decision in any situation is final.</li>
+                        <li>The starting procedure of the robot should be simple and can involve giving the bot two manual interventions, beyond which leads to disqualification.</li>
+                        <li>There will be preliminary &amp; final rounds, depending upon the number of teams, qualification will be done accordingly.</li>
+                        <li>All teams will be given a calibration time of 15 minutes before the round starts to get their bot ready.</li>
+                        <li>The points would be given, i.e., for</li>
+                      <div style="margin-left: 120px;">
+                            <li>Tough curves =+20 pts</li>
+                            <li>Interventions=-20 pts</li>
+                       </div>
+
+
+                        <li>The teams getting through the track in the least amount of time and least number of touches will be announced as the winner.</li>
+
+
+
+
+
+                        <h3>BOT SPECIFICATION:</h3>
+
+
+                        <li>A bot must fit within a square dimension of 30cm x 30cm. There are no height constraints.</li>
+                        <li>The bot must use an on-board power supply. No external power supply will be allowed.</li>
+                        <li>The bot must be completely autonomous and it should not receive any external help during the event.</li>
+                        <li>The potential difference between any two points in the robot should not exceed 12V DC.</li>
+
+
+
+
+
+                        <h3>SAMPLE ARENA:</h3>
+
+
+                        <li>The designed track might consist of straight lines, smooth curves, obtuse turns, right angle turns, acute turns, breaks and the track is a black line on a white background. The width of the line is about 3 Cm. The distance between any two adjacent tracks will be 30 cm.</li>
+                        <li>The below arena is just a sample and the real arena will be similar to this.</li>
+
+
+                        <center><img src="images/track.jpg" /></center>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="event6" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title" id="myModalLabel">RC RACING</h3>
+                    </div>
+
+                    <div class="modal-body">
+                        <p><strong><i><center>“When in doubt, throttle it out.”</center></i></strong></p>
+
+                        <p>This event is a break for the car enthusiasts and the avid gamers alike. A course is built specifically for the race between remote controlled cars powered by battery and built by the participants themselves.</p>
+                        <p>
+                            <h3>INSPECTION: </h3>
+                            <ul>
+                                <li>1. Participants have to report to the venue with their machines.</li>
+                                <li>2. Inspection of the machine will be carried out according to the guidelines & regulations set by the organizers. Points will be reduced in case the rules are violated.</li>
+                                <li>3. All selected teams will be given practice slots of 1 lap each, after the inspection is completed.</li>
+                            </ul>
+                            <h3>TRACK SPECIFICATIONS: </h3>
+                            <ul>
+                                <li>1. The race track will be an off-road arena.</li>
+                                <li>2. The race track will be a dirt track with turns, bends, pits, bumps, puddles, hairpin bends and vertical U turn.</li>
+                                <li>3. An elevated podium will be provided for controlling the machine. The podium will ensure good visibility for the controller</li>
+                            </ul>
+                            <h3>MACHINE SPECIFICATIONS: </h3>
+                            <ul>
+                                <li>1. The machine must be necessarily controlled by a wireless remote control mechanism throughout the race. </li>
+                                <li>2. Any team found using a machine with a ready-made chassis will be disqualified.</li>
+                            </ul>
+                            <h3>RACE RULES: </h3>
+
+                            <li> A lap is considered to be completed when the machine completes the entire track & comes back to the starting point.</li>
+                            <li> The track will have check points at regular intervals. If a machine halts, or goes off the arena at any point on the track, one of the participants is allowed to place it at the nearest checkpoint. The delay time will not be deducted from the lap time.</li>
+                            <li> If any of the machines starts off before the flag is waved, the timer would be restarted and the machines will get a second chance. However, if any machine starts off before the waving of flag for a second time, it will be disqualified. No re-match will be held for the second time.</li>
+                            <li> Team members are not permitted to touch either their machines once the race begins (unless there is need to place the machine at the check point). If found not obeying the rules the team will be disqualified.</li>
+                            <li> Teams are not allowed to intentionally damage the machine of the opponent's team. If found doing so on track (while racing), the concerned team will be disqualified. Execution of this rule will be subjective and relies completely on judge's discretion.</li>
+                            <li> Once the race starts, only one of the team members has the right to re-position the car, none of the team members should enter the track except that particular person.</li>
+                            <li> Judge's decision will be treated as final no discrepancy shall be entertained.</li>
+
+                            <h3>GENERAL RULES: </h3>
+
+                            <li>Pre-Registration is Mandatory. No spot registrations are allowed.</li>
+                            <li>The participants should bring their <b>college ID cards</b> for identification purpose.</li>
+                            <li>Participants must report on or before <b>9.00 am.</b> </li>
+                            <li> Each team can consist of only a maximum of two participants.</li>
+                            <li>The robot must be built by the participants themselves, if not the team stands disqualified. </li>
+                            <li>The participants must not exceed the given time limit. </li>
+                            <li>The participants must adhere to the rules and regulations formed by the symposium committee members and volunteers. </li>
+                            <li>Lunch will not be provided.</li>
+                            <li>Students with a valid identity card from their respective institutions are only eligible for participation.</li>
+                            <li> A team is allowed to drive only one car. </li>
+                            <li> If the machine is found unsafe to run on the track or found to be damaging the track that team will be disqualified from the race. The organizers’ decision will be final and binding in this respect. </li>
+                            <li> The teams must adhere to the spirit of healthy competition. The organizers reserve the right to disqualify any team indulged in misbehavior. </li>
+
+                        </p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="event7" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title" id="myModalLabel">TECH-BATE</h3>
+                    </div>
+
+                    <div class="modal-body">
+                        <p><strong><i><center>“Don’t raise your voice, improve your argument”</center></i></strong></p>
+
+                        <p>Tech-bate is nothing but a technical debate .Here the participants are divided into two groups and given a topic. One team would have to talk in favour of the topic and other, against the topic of discussion. Participants here would be judged based on their communication and rhetoric skills. A strict debate decorum must be maintained.</p>
+                        <h3>ROUNDS:</h3>
+                        <ul>
+                            <li>1. <b>ROUND 1:</b> PRELIMS </li>
+                            <li>2. <b>ROUND 2:</b>SEMI-FINALS </li>
+                            <li>3. <b>ROUND 3:</b> FINALS </li>
+                        </ul>
+                        <h3>RULES:</h3>
+                        <li>Use of unparliamentary language is strictly prohibited. </li>
+                        <li>5 minute preparation time would be given. </li>
+                        <li>The topic would be given on the spot.</li>
+                        <li>Maximum duration for the debate is 10-15 minutes. </li>
+                        <li>Use of mobile phones is strictly prohibited.</li>
+                        <li>The topic of discussion will be purely technical.</li>
+                        <li>The participants should bring their <b>college ID cards</b> for identification purpose.</li>
+                        <li>Participants must report on or before <b>9.00 am</b>. </li>
+                        <li>The judge’s decision is to be considered final and no discrepancy shall be entertained.</li>
+                        <li>A conference room decorum must be maintained. </li>
+                        <li>The participants must not exceed the given time limit. </li>
+                        <li>The participants must adhere to the rules and regulations formed by the symposium committee members and volunteers. </li>
+                        <li>Lunch will not be provided.</li>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="event8" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title" id="myModalLabel">TECH-HUNT</h3>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <p>TECH-HUNT is a technical event that has a little adventure added to it. It is a team event where the team has to solve small circuits and codes to go to the final level. The team to solve the puzzles the fastest and clear all the levels would be declared winner. The puzzles may be small circuits or codes of programming languages that would lead to the next level.</p>
+                        <h3>SESSION TIMINGS:</h3>
+                        <p>
+                            <b>SESSION 1:  10.am to 11.am </b> Set of 10 questions will be given to each team and within 10 minutes the answer must be submitted. The questions will be corrected and 5 teams out of it will be selected based on the marks. Treasure Hunt will be conducted to find 5 clues for 40 minutes.</p>
+                        <p>
+                            <b>SESSION 2:  11.30am to 12.30pm </b> Set of 10 questions will be given to each team and within 10 minutes the answer must be submitted. The questions will be corrected and 5 teams out of it will be selected based on the marks. Treasure Hunt will be conducted to find 5 clues for 40 minutes.</p>
+                        <p><b>SESSION 3:  2.pm to 3.pm</b></p>
+
+
+                        <h3>RULES:</h3>
+                        <li>A selfie must be taken along with the clue.</li>
+                        <li>For each session, the team will have different path i.e. 3 clues are different and the 4th clue is same for all. </li>
+                        <li>The clues will be in and around college premises. </li>
+                        <li>Each team can consist of only a maximum of two participants.</li>
+                        <li>Participants must report on or before <b>9.00 am</b>. </li>
+                        <li>The participants should bring their <b>college ID cards</b> for identification purpose.</li>
+                        <li>The participants must adhere to the rules and regulations formed by the symposium committee members and volunteers.</li>
+                        <li>Lunch will not be provided.</li>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="event9" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title" id="myModalLabel">MINUTE-TO-WIN-IT</h3>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <p>MINUTE-TO-WIN-IT is a time and pressure test event. We would give you small technical tasks, which are simple and easy ones that you would have to complete within a minute. It is a team event. The team to have completed the maximum number of tasks and scores the highest points would be declared the winners.</p>
+
+                        <h3>RULES:</h3>
+                        <li>Maximum of two members per team.</li>
+                        <li>Participants must report on or before <b>9.00 am.</b></li>
+                        <li>The participants should bring their <b>college ID cards</b> for identification purpose.</li>
+                        <li>The judge’s decision is to be considered final and no discrepancy shall be entertained.</li>
+                        <li>The participants must adhere to the rules and regulations formed by the symposium committee members and volunteers. </li>
+                        <li>Lunch will not be provided.</li>
+                        <li>Both online and spot registrations are applicable.</li>
+                        <li>A total of three rounds will be conducted and there will be elimination after each round.</li>
+                        <li>Mobile phones are not allowed.</li>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="event10" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title" id="myModalLabel">TECHNICAL CONNEXIONS</h3>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <p>Technical Connexions is our version of the popular game show of the same name. The participants would have to link the unlikely clues given to find the word or the phrase. The best connector with the highest points would be declared the winner. Come, participate and win exciting prizes.</p>
+<h3>STAGES:</h3>
+<p><b>1. PRELIMS: </b>The preliminary stage is used to shortlist the number of participants down to the top 5 teams.</p>
+<p><b>2. FINALS: </b>In the final stage, the top 5 teams must progress through 3 rounds wherein there will be elimination at the end of each round. The team with the highest number of points at the end of the final stage will be judged the winner.</p>
+
+                        <h3>RULES:</h3>
+                        <li>Each team must consist of only two participants.</li>
+<li>Participants must report on or before <b>9.00 am.</b> </li>
+<li>The participants should bring their <b>college ID cards</b> for identification purpose.</li>
+<li>The judge’s decision is to be considered final and no discrepancy shall be entertained.</li>
+<li>The participants must not exceed the given time limit.</li>
+<li>The participants must adhere to the rules and regulations formed by the symposium committee members and volunteers.</li>
+<li>Lunch will not be provided.</li>
+
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="event11" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title" id="myModalLabel">GREEN SCREEN</h3>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <p>GREEN SCREEN is an event, that is out to test your comprehending skills. The team would be given a picture and a conversation between two people. Could you decode the pic and the conversation to get to the exact word that we imply? Come and check out your skills in this unique event.</p>
+
+                        <h3>ROUNDS:</h3>
+                        <li><b>ROUND 1:</b> 20 QUESTIONS (45 SECONDS EACH)</li>
+                        <li><b>ROUND 2:</b>15 QUESTIONS(30 SECONDS EACH )</li>
+                        <li><b>ROUND 3:</b> 10 QUESTIONS(20 SECONDS EACH)</li>
+
+                        <h3>RULES:</h3>
+                        <li>Each team can consist of only a maximum of three participants.</li>
+                        <li>Participants must report on or before <b>9.00 am.</b> </li>
+                        <li>The participants should bring their <b>college ID cards</b> for identification purpose.</li>
+                        <li>The participants must adhere to the rules and regulations formed by the symposium committee members and volunteers.</li>
+                        <li>Lunch will not be provided.</li>
+                        <li>Use of Mobile phones is prohibited.</li>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="event12" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title" id="myModalLabel">TECH-ZAP</h3>
+                    </div>
+
+                    <div class="modal-body">
+                        <p><strong><i><center>&ldquo; Don&rsquo;t be afraid to get creative and experiment with your marketing.&quot; - Mike Volpe</center></i></strong></p>
+
+                        <p>Every participant will be given a technical product to advertise. Within the given time the participant must convince the buyer to purchase the product.</p>
+
+
+
+                        <h3>RULES:</h3>
+                        <li>Topics and products would be on the spot. </li>
+                        <li>6 minute preparation time would be given. </li>
+                        <li>Each performance should not exceed five minutes.</li>
+                        <li>A minute would be given for queries. </li>
+                        <li>Only English language is permitted.</li>
+                        <li>Each team can consist of only a maximum of three participants.</li>
+                        <li>Participants must report on or before <b>9.00 am. </b></li>
+                        <li>The participants should bring their <b>college ID cards </b>for identification purpose.</li>
+                        <li> The topic presented must be on a technical subject from the given list.</li>
+                        <li>The judge’s decision is to be considered final and no discrepancy shall be entertained.</li>
+                        <li>The participants must not exceed the given time limit.</li>
+                        <li>The participants must adhere to the rules and regulations formed by the symposium committee members and volunteers.</li>
+                        <li>Lunch will not be provided.</li>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="event13" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title" id="myModalLabel">SURVIVAL OF THE FITTEST</h3>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <p>Every participant will be given a personality. Convince the judge as to why your survival is beneficial to the society. Participants would be judged based on their communication capabilities, depth of knowledge and presence of mind.</p>
+
+
+
+                        <h3>RULES:</h3>
+                        <li>It is an individual event.</li>
+                        <li>The characters would be given at the time of event only. </li>
+                        <li>Participants must report on or before <b>9.00 am.</b></li>
+                        <li>The participants should bring their<b> college ID cards</b> for identification purpose.</li>
+                        <li>The judge’s decision is to be considered final and no discrepancy shall be entertained. </li>
+                        <li>The participants must not exceed the given time limit. </li>
+<li>Use of internet is permitted.</li>
+                        <li>The participants must adhere to the rules and regulations formed by the symposium committee members and volunteers. </li>
+                        <li>Lunch will not be provided.</li>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="event14" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title" id="myModalLabel">OPEN CIRCUIT</h3>
+                    </div>
+
+                    <div class="modal-body">
+                        <p><strong><i><center>“Curiosity is the wick in the candle of learning”</center></i></strong></p>
+
+                        <p>Open circuit is an event, that is bound to test your problem solving technique. The team of participants would be locked in a dark room. You would have to solve the series of puzzles to reach the next clue and to unlock the door. Here your technical knowledge and problem solving technique is put to test.The team to solve all the clues first will be the winners.</p>
+                        <h3>ROUNDS:</h3>
+                        <li><b>ROUND 1:</b> PRELIMS (20 MINUTES)</li>
+                        <li><b>ROUND 2:</b> FINALS(15 MINUTES)</li>
+                        <h3>RULES:</h3>
+                        <li>Each team can consist of only a maximum of three participants.</li>
+                        <li>Use of mobile phones is strictly prohibited.</li>
+                        <li>Participants must report on or before <b>9.00 am.</b></li>
+                        <li>The participants should bring their <b>college ID cards</b> for identification purpose.</li>
+                        <li>The participants must adhere to the rules and regulations formed by the symposium committee members and volunteers. </li>
+                        <li>Participants must not exceed the given time limit. </li>
+                        <li>Lunch will not be provided.</li>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="event15" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title" id="myModalLabel">CLUE IT</h3>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <p>Clue it is a technical event that tests your skills and ability to understand words and phrases said indirectly. Participants would be judged based on their understanding capacity, speed and communication capabilities.
+                        </p>
+                        <p>
+                            <li>The event is a team event with four rounds.</li>
+                            <li>ROUND 1: Each team will be given 10 words and the time limit is 90 seconds. Based on the scores and time taken, teams will be selected for the next round.</li>
+                            <li>ROUND 2: Each team will be given 10 words and the time limit is 60 seconds. Based on the scores and time taken, teams will be selected for the next round.</li>
+                            <li>ROUND 3: Within the duration of 60 seconds, participants must memorize bunch of words and clues must be given to the team mate. There is no time split for the words. Based on the scores and time, taken teams will be selected for the next round.</li>
+                            <li>ROUND 4: Each team will be shown a picture and a word related to the original word. Within the duration of 45 seconds, the team must decode maximum number of questions (out of 10). </li>
+                            <li>TIE BREAKER: It will be a buzzer round and one question will be asked by the coordinator and the team which presses the buzzer first will be given the first preference and if answered correctly will be announced as the winner, if not the question will be passed to the team which pressed successively.</li>
+
+                        </p>
+
+
+                        <h3>RULES:</h3>
+
+                        <li>Each team can consist of only a maximum of two participants.</li>
+                        <li>Participants must report on or before <b>9.00 am</b>.</li>
+                        <li>The participants should bring their <b>college ID cards</b> for identification purpose.</li>
+                        <li>The participants must adhere to the rules and regulations formed by the symposium committee members and volunteers.</li>
+                        <li>Lunch will not be provided.</li>
+                        <li>Use of Mobile phones is prohibited.</li>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="event16" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title" id="myModalLabel">GOOGLE IT</h3>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <p>GOOGLE IT is an event set out to test your speed.The team would be given a picture which they would have to interpret within a given time limit. Participants who have interpreted the maximum number of pictures would be named the winner of the event.</p>
+                        <p>The event has 3 rounds: </p>
+                        <p><b>ROUND 1:</b> The participants will be given 20 questions and the time limit is 10 minutes to riddle out the answers.</p>
+                        <p><b>ROUND 2:</b> The participants selected from the previous round will be given 15 questions and the time limit is 10 minutes. </p>
+                        <p><b>ROUND 3:</b> The participants selected from the previous round will be given 10 questions and the time limit is 10 minutes. </p>
+                        <p>The questions will be given in form of pictures, clues will be provided for round 2 and 3. The participants must google and find the answers within the time limit.</p>
+
+
+
+                        <h3>RULES:</h3>
+                        <li>Each team can consist of a maximum of two participants.</li>
+                        <li>Participants must report on or before <b>9.00 am.</b></li>
+                        <li>The participants should bring their <b>college ID cards</b> for identification purpose.</li>
+                        <li>Use of mobile phones is prohibited.</li>
+                        <li>The participants must adhere to the rules and regulations formed by the symposium committee members and volunteers.</li>
+                        <li>Participants must not exceed the given time limit. </li>
+                        <li>Lunch will not be provided.</li>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="event17" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title" id="myModalLabel">GAMING</h3>
+                    </div>
+
+                    <div class="modal-body">
+                        <p><strong><i><center>“I am a gamer not because I don’t have a life, It’s because I choose to have many.”</center></i></strong></p>
+
+                        <p>Gaming is an event to test your gaming level. You should select the game in which you are interested in, to defeat your opponent in a given time. You will have to survive each round to reach the final round by defeating other participants. Player with the highest number of wins will be declared as winner.</p>
+                        <h3>SINGLE PLAYER GAMING:</h3>
+                        <li>FIFA 15</li>
+                        <li>SMACKDOWN VS RAW/WWE 2K15</li>
+                        <li>MORTAL KOMBAT</li>
+                        <h3>RULES:</h3>
+                        <li>It is an individual event. </li>
+                        <li>Participants must report on or before <b>9.00 am.</b></li>
+                        <li>The participants should bring their <b>college ID cards</b> for identification purpose.</li>
+                        <li>The participants must adhere to the rules and regulations formed by the symposium committee members and volunteers. </li>
+                        <li>Gamers must bring their ID cards with them for verification.</li>
+                        <li>All games will be conducted in tournament style.</li>
+                        <li>Lunch will not be provided.</li>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="event18" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title" id="myModalLabel">SHORT FILM MAKING</h3>
+                    </div>
+
+                    <div class="modal-body">
+                        <p><strong><i><center>“Filmmaking is a chance to live many lifetimes”
+                    -Robert Altman
+</center></i></strong></p>
+
+                        <p>This is an event that would aim to bring to light the directorial skills of the participant. The participant would have to send us their short film for review to the selection panel for preliminary selections and the judge would review all the films selected and select the winner.</p>
+
+                        <h3>RULES:</h3>
+                        <li>Each team can consist of only a maximum of three participants.</li>
+                        <li>Participants must report on or before <b>9.00 am</b>.</li>
+                        <li>The participants should bring their <b>college ID cards</b> for identification purpose.</li>
+                        <li>The participant must send us the film made and the details beforehand</li>
+                        <div style="margin-left: 120px;">
+                            <li>via post as a <b>CD-ROM</b> to the following address:</li>
+                            <p><b>ROOM NO #49, IIET MEN’S HOSTEL, OPP.SEKAR EMPORIUM, KODAMBAKKAM, CHENNAI-600024 </b></p>
+                            <li>OR upload your file to the following link, (only if the movie can be compressed to within 75mb) <a href="http://dropitto.me/pranav2k15sfm"><b>PRANAV SHORTFILM UPLOAD</b></a> [You will receive password after registration.]
+                            </li>
+                        </div>
+                        <li>The final date for submission is <b>12-08-2015</b></li>
+                        <li>The judge’s decision is to be considered final and no discrepancy shall be entertained. </li>
+                        <li>The participants must not exceed the given time limit. </li>
+                        <li>The participants must adhere to the rules and regulations formed by the symposium committee members and volunteers. </li>
+                        <li>Lunch will not be provided.</li>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="event19" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title" id="myModalLabel">ONLINE PHOTOGRAPHY</h3>
+                    </div>
+
+                    <div class="modal-body">
+                        <p><strong><i><center>“Good photos are like good jokes.If u have to explain it,it just isn't that good”
+-Anonymous 
+</center></i></strong></p>
+
+                        <p>This event will be focusing to bring the photography skills of the participants to limelight. The registered participants are required to upload their photographs on the page specified. So come and hone your camera skills and win exciting prize.</p>
+
+
+
+                        <h3>RULES:</h3>
+                        <li>Online photography is an individual event. </li>
+                        <li>The last date for uploading the photo is <b>12-08-2015.</b> </li>
+                        <li>The participants should bring their <b>college ID cards</b> for identification purpose.</li>
+                        <li>The participant must upload us their photographs before the deadline on the specified <a href="https://wwww.facebook.com/onlinephotography.pranav2k15"><b>Facebook page</b></a>.</li>
+                        <li>The judge’s decision is to be considered final and no discrepancy shall be entertained.</li>
+                        <li>The participants must adhere to the rules and regulations formed by the symposium committee members and volunteers. </li>
+                        <li>Lunch will not be provided.</li>
+                        <li>Photos should be shot in 13 MP or above SLRs</li>
+                        <li>Photos taken with different camera modes are applicable. (Any themes but shot with suitable mode) Ex. Macro mode photos</li>
+                        <li>Original Picture without Photoshop must be uploaded </li>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-labelledby="myModalLabel" class="modal fade" id="event20" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title" id="myModalLabel">MYSTERY</h3>
+                    </div>
+
+                    <div class="modal-body">
+                        <p>
+                            <center><img src="images/riddle1.jpg" /></center>
+                        </p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+
+        <div id="footer">
+            <div class="container">
+                <div class="row">
+                    <!-- Sign Up -->
+                    <section class="12u 12u(mobile)">
+                        <header>
+                            <h2 id="signupn">Sign up!</h2>
+                        </header>
+
+                        <form action="mail.php" id="signup" method="post">
+                            <div class="row uniform">
+                                <div class="6u 12u$(xsmall)">
+                                    <input id="name" name="name" placeholder="Name" required="true" type="text" value="" />
+                                </div>
+
+                                <div class="3u 12u$(xsmall)">
+                                    <input id="email" name="email" placeholder="Email" required="true" type="email" value="" />
+                                </div>
+
+                                <div class="3u 12u$(xsmall)">
+                                    <input id="phone" maxlength="10" name="phone" placeholder="Phone" required="true" type="text" value="" />
+                                </div>
+
+                                <div class="6u 12u$(xsmall)">
+                                    <input id="clg" name="clg" placeholder="College" required="true" type="text" value="" />
+                                </div>
+
+                                <div class="3u 12u$(xsmall)">
+                                    <input id="dept" name="dept" placeholder="Department" required="true" type="text" value="" />
+                                </div>
+
+                                <div class="3u 12u$(xsmall)">
+                                    <div class="select-wrapper">
+                                        <select id="year" name="year" required="true">
+                                            <option value="">- Year -</option>
+                                            <option value="1st">1st</option>
+                                            <option value="2nd">2nd</option>
+                                            <option value="3rd">3rd</option>
+                                            <option value="4th">4th</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="12u$ 12u$(small)">
+                                    <input id="sevent1" name="event[]" type="checkbox" value="Paper Presentation" />
+                                    <label for="sevent1">Paper Presentation*</label>
+                                    <input id="sevent2" name="event[]" type="checkbox" value="Project Presentation" />
+                                    <label for="sevent2">Project Presentation*</label>
+                                    <input id="sevent3" name="event[]" type="checkbox" value="Circuit Debugging" />
+                                    <label for="sevent3">Circuit Debugging</label>
+                                    <input id="sevent4" name="event[]" type="checkbox" value="Code Debugging" />
+                                    <label for="sevent4">Code Debugging</label>
+                                    <input id="sevent5" name="event[]" type="checkbox" value="Line Follower" />
+                                    <label for="sevent5">Line Follower</label>
+                                    <input id="sevent6" name="event[]" type="checkbox" value="RC Racing" />
+                                    <label for="sevent6">RC Racing</label>
+                                    <input id="sevent7" name="event[]" type="checkbox" value="Tech-Bate" />
+                                    <label for="sevent7">Tech-Bate</label>
+                                    <input id="sevent8" name="event[]" type="checkbox" value="Tech-Hunt" />
+                                    <label for="sevent8">Tech-Hunt</label>
+                                    <input id="sevent9" name="event[]" type="checkbox" value="Minute-to-Win-it" />
+                                    <label for="sevent9">Minute-to-Win-it!</label>
+                                    <input id="sevent10" name="event[]" type="checkbox" value="Connexions" />
+                                    <label for="sevent10">Connexions</label>
+                                    <input id="sevent11" name="event[]" type="checkbox" value="Green Screen" />
+                                    <label for="sevent11">Green Screen</label>
+                                    <input id="sevent12" name="event[]" type="checkbox" value="Tech-Zap" />
+                                    <label for="sevent12">Tech-Zap</label>
+                                    <input id="sevent13" name="event[]" type="checkbox" value="Survival of the fittest" />
+                                    <label for="sevent13">Survival of the fittest</label>
+                                    <input id="sevent14" name="event[]" type="checkbox" value="Open Circuit" />
+                                    <label for="sevent14">Open Circuit</label>
+                                    <input id="sevent15" name="event[]" type="checkbox" value="Clue it!" />
+                                    <label for="sevent15">Clue it!</label>
+                                    <input id="sevent16" name="event[]" type="checkbox" value="Google it!" />
+                                    <label for="sevent16">Google it!</label>
+                                    <input id="sevent17" name="event[]" type="checkbox" value="Gaming" />
+                                    <label for="sevent17">Gaming</label>
+                                    <input id="sevent18" name="event[]" type="checkbox" value="Short Film making" />
+                                    <label for="sevent18">Short Film making**</label>
+                                    <input id="sevent19" name="event[]" type="checkbox" value="Online Photography" />
+                                    <label for="sevent19">Online Photography**</label>
+
+                                    <p>* Abstracts are to be mailed for Paper and Project presentation to <a href="mailto:paper@pranav2k15.com">paper@pranav2k15.com</a> (Paper presentation) and <a href="mailto:project@pranav2k15.com">project@pranav2k15.com</a> (Project presentation).</p>
+
+                                    <p>** Further instructions for the event will be sent via registered e-mail after registration.</p>
+
+<p><h3>*** DISCLAIMER ***</h3><p><li>Registrations for PIPS must be done <a href="pips.html#signupn">here</a>.</li></p></p>
+                                </div>
+
+                                <div class="4u 12u(mobile)"></div>
+
+                                <div class="4u 12u(mobile)">
+                                    <ul class="actions">
+                                        <li>
+                                            <input class="special" id="submit_btn" type="submit" value="Submit" />
+                                        </li>
+                                        <li>
+                                            <input type="reset" value="Reset" />
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+
+                <hr />
+                <div class="row">
+                    <section class="6u 12u(mobile)">
+                        <header id="contact">
+                            <h2>Contact Us:</h2>
+                        </header>
+
+                        <ul class="divided">                       
+                            <li>
+                                <article class="post stub">
+                                    <header>
+                                        <h3>Student Co ordinators:</h3></header><header> Lakshmi Narayanan - +91 9962474833</header><header>Vikram Narayanan.D - +91 9094861977</header><header>Sathya Narayanan - +91 9498045199
+                                    </header>
+                                </article>
+                            </li>
+                            <li>
+                                <article class="post stub">
+                                    <header>
+                                        <h3>Email: <a href="mailto:queries@pranav2k15.com">queries@pranav2k15.com</a></h3>
+                                    </header>
+                                </article>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <div class="8u" id="map-canvas" style="width: 600px;height: 400px;"></div>
+                </div>
+
+                <hr />
+                <div class="row">
+                    <div class="12u">
+                        <!-- Contact -->
+                        <section class="contact">
+                            <ul class="icons">
+                                <li><a class="icon fa-twitter" href="https://twitter.com/pranav2k15"><span class="label">Twitter</span></a></li>
+                                <li><a class="icon fa-facebook" href="https://www.facebook.com/pranav2k15"><span class="label">Facebook</span></a></li>
+                                <li><a class="icon fa-envelope-o" href="mailto:pranav2k15.msec@gmail.com"><span class="label">Email</span></a></li>
+                            </ul>
+
+                            <ul class="copyright">
+                                <li>&copy; Web Design by Shankaranarayanan K R</li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.onvisible.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+</body>
+
+</html>
